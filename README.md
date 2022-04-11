@@ -36,7 +36,7 @@ sms.send('your phone number to send', 'foobar text', 'from tel line');
 
 // sms.send returns a Promise so if you are in ES7 environment
 try {
-  await sms.send(phone, text);
+  await sms.send(phone, text, from);
 } catch (err) {
   console.error(err);
 }
