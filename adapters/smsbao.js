@@ -1,10 +1,7 @@
 "use strict";
 
 const BaseAdapter = require('./base');
-const request = require('superagent-promise')(
-  require('superagent'), 
-  Promise
-);
+const request = require('request');
 
 class SMSBao extends BaseAdapter {
   constructor(credentials) {
@@ -19,15 +16,20 @@ class SMSBao extends BaseAdapter {
       credentials
     });
   }
-  request(phoneNum, content) {
-    return request.get(this.options.endpoint)
-    .query({
-      u: this.options.credentials.user,
-      p: this.options.credentials.pass,
-      m: phoneNum,  // phone number
-      c: content    // text content
+  
+  send(phoneNum, content) {
+    return new Promise((resolve, reject) => {
+      const response = request.get(this.options.endpoint)
+      .query({
+        u: this.options.credentials.user,
+        p: this.options.credentials.pass,
+        m: phoneNum,  // phone number
+        c: content    // text content
+      })
+      .end();
+
+      resolve(response);
     })
-    .end();
   }
 }
 

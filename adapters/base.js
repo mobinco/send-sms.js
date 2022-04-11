@@ -1,11 +1,15 @@
 "use strict";
 
 class Adapter {
-  constructor(name, options) {
-    this.name = name;
+  constructor(options) {
     this.options = options;
   }
-  request() {
+
+  async send() {
+    throw new Error('not implemented');
+  }
+  
+  async sendPattern() {
     throw new Error('not implemented');
   }
 }
