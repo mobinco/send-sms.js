@@ -7,8 +7,8 @@
 
 The library to send simple message which is compatible with multi-services, currently it supports the following services:
 
-- 短信宝(smsbao.com)
-- 容联云(www.yuntongxun.com)
+- ippanel (ippanel.com)
+- twilio (www.yuntongxun.com)
 
 ## Installation
 
@@ -26,14 +26,13 @@ const {
   adapters
 } = require('send-sms');
 
-const smsbao = new adapters.SMSBao({
-  user: 'your user from smsbao',
-  pass: 'your pass from smsbao'
+const ippanel = new adapters.IPPanel({
+  apiKey: 'your api key'
 });
-const sms = new SMS('weflex', smsbao);
+const sms = new SMS(ippanel);
 
 // when you need to send a simple message
-sms.send('your phone number to send', 'foobar text');
+sms.send('your phone number to send', 'foobar text', 'from tel line');
 
 // sms.send returns a Promise so if you are in ES7 environment
 try {
@@ -46,7 +45,7 @@ try {
 The above example will send a message to user like the following:
 
 ```
-【weflex】foobar text
+foobar text
 ```
 
 ## Write your adapter for service that you are using
@@ -66,17 +65,17 @@ class YourServiceAdapter extends Adapter {
 }
 ```
 
-To see an example, see [短信宝](adapters/smsbao.js)
+To see an example, see (adapters/smsbao.js)
 
 ## License
 
-MIT @ WeFlex, Inc.
+MIT @ Mobinco, Inc.
 
 [npm-image]: https://img.shields.io/npm/v/send-sms.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/send-sms
-[travis-image]: https://img.shields.io/travis/weflex/send-sms.js.svg?style=flat-square
-[travis-url]: https://travis-ci.org/weflex/send-sms.js
-[david-image]: http://img.shields.io/david/weflex/send-sms.js.svg?style=flat-square
-[david-url]: https://david-dm.org/weflex/send-sms.js
+[travis-image]: https://img.shields.io/travis/mobinco/send-sms.js.svg?style=flat-square
+[travis-url]: https://travis-ci.org/mobinco/send-sms.js
+[david-image]: http://img.shields.io/david/mobinco/send-sms.js.svg?style=flat-square
+[david-url]: https://david-dm.org/mobinco/send-sms.js
 [downloads-image]: http://img.shields.io/npm/dm/send-sms.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/send-sms

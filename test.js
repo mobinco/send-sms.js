@@ -17,12 +17,11 @@ test('bare adapter will throw an error', (t) => {
 
 test('construct sms instance', (t) => {
   t.plan(2);
-  var smsbao = new sendSms.adapters.SMSBao({
-    user: 'abc',
-    pass: 'pwd'
+  var smsbao = new sendSms.adapters.IPPanel({
+    apiKey: 'your api key',
   });
-  sms = new sendSms.SMS('weflex', smsbao);
-  t.equal(sms.name, 'weflex');
+  sms = new sendSms.SMS(smsbao);
+  t.equal('zimend.com');
   t.deepEqual(sms.adapter, smsbao);
   t.end();
 });

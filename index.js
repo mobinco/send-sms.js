@@ -3,27 +3,25 @@
 const Adapter = require('./adapters/base');
 
 class SMS {
-  constructor(name, adapter) {
-    if (typeof name !== 'string') {
-      throw new TypeError('name is required to be a string');
-    }
+  constructor(adapter) {
     if (!(adapter instanceof Adapter)) {
       throw new TypeError('adapter must be an instance of Adapter');
     }
-    this.name = name;
     this.adapter = adapter;
   }
-  send(phoneNum, content) {
-    if (typeof content === 'string') {
-      content = `【${this.name}】${content}`;
-    }
-    return this.adapter.request(phoneNum, content);
+
+  async send(recipients, content, from = null) {
+    return await this.adapter.send(recipients, content, from);
+  }
+
+  async sendPattern(recipient, patternCode, patternData = null, from = null) {
+    return await this.adapter.sendPattern(recipient, patternCode, patternData, from);
   }
 }
 
 exports.SMS = SMS;
 exports.Adapter = Adapter;
 exports.adapters = {
+  IPPanel: require('./adapters/ippanel.js'),
   SMSBao: require('./adapters/smsbao.js'),
-  RonglianYun: require('./adapters/ronglian-yun.js')
 };

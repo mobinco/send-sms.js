@@ -1,32 +1,60 @@
 {
-  "name": "send-sms",
-  "version": "1.3.1",
-  "description": "The library to send simple message which is compatible with multi-services, only supports 短信宝",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
+  "_from": "send-sms",
+  "_id": "send-sms@1.3.1",
+  "_inBundle": false,
+  "_integrity": "sha1-mrK2mAB5jX0l7Ul1mPL4oeGG/yw=",
+  "_location": "/send-sms",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "send-sms",
+    "name": "send-sms",
+    "escapedName": "send-sms",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/weflex/send-sms.js.git"
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/send-sms/-/send-sms-1.3.1.tgz",
+  "_shasum": "9ab2b69800798d7d25ed497598f2f8a1e186ff2c",
+  "_spec": "send-sms",
+  "_where": "D:\\xampp\\htdocs\\vanik",
+  "author": {
+    "name": "Zibad Mend",
+    "email": "zibadmend@gmail.com"
   },
+  "bugs": {
+    "url": "https://github.com/mobinco/send-sms.js/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "moment": "^2.29.2",
+    "request": "^2.88.2"
+  },
+  "deprecated": false,
+  "description": "The library to send simple message which is compatible with multi-services",
+  "devDependencies": {
+    "tape": "^4.4.0"
+  },
+  "homepage": "https://github.com/mobinco/send-sms.js#readme",
   "keywords": [
     "sms",
     "send",
     "superagent"
   ],
-  "author": "Yorkie Liu <yorkiefixer@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/weflex/send-sms.js/issues"
+  "main": "index.js",
+  "name": "send-sms",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mobinco/send-sms.js.git"
   },
-  "homepage": "https://github.com/weflex/send-sms.js#readme",
-  "dependencies": {
-    "moment": "^2.13.0",
-    "superagent": "^1.7.2",
-    "superagent-promise": "^1.1.0"
+  "scripts": {
+    "test": "node test.js"
   },
-  "devDependencies": {
-    "tape": "^4.4.0"
-  }
+  "version": "1.3.1"
 }
