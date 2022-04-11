@@ -54,11 +54,11 @@ foobar text
 const { Adapter } = require('send-sms');
 class YourServiceAdapter extends Adapter {
   constructor(arguments) {
-    super('your name', {
+    super({
       // options like credentials
     });
   }
-  request(phone, content) {
+  send(phone, content, from) {
     // must implement this method in your self adapter, which does
     // send requests to service endpoint, and must return a Promise
   }
