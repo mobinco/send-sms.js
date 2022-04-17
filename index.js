@@ -14,7 +14,7 @@ class SMS {
     return await this.adapter.send(recipients, content, from);
   }
 
-  async sendPattern(recipient, patternCode, patternData = null, from = null) {
+  async sendPattern(recipient, patternCode, patternData = {}, from = null) {
     return await this.adapter.sendPattern(recipient, patternCode, patternData, from);
   }
 }

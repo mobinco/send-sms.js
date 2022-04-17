@@ -7,7 +7,7 @@
 
 The library to send simple message which is compatible with multi-services, currently it supports the following services:
 
-- ippanel (www.ippanel.com)
+- ippanel (ippanel.com)
 - twilio (www.yuntongxun.com)
 
 ## Installation
