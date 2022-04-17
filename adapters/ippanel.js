@@ -39,12 +39,14 @@ class IPPanel extends BaseAdapter {
           },
           json: true,
         }, function (error, response, body) {
+          const resBody = response ? response.body : false
           if (!error && response.statusCode === 200) {
-            resolve(response.body);
-            return response.body
+            resolve(resBody)
+            return resBody
           } else {
-            reject(error)
-            return new Error(error)
+            const msg = resBody.data ? resBody.data.error : resBody
+            reject(msg)
+            return new Error(msg)
           }
         })
       } catch (error) {
@@ -54,6 +56,53 @@ class IPPanel extends BaseAdapter {
     })
   }
 
+  async sendPattern(recipient, patternCode, patternData = {}, from) {
+    if (!recipient) throw new Error('Recipient is required')
+    if (!patternCode) throw new Error('Pattern Code is required')
+    if (!patternData) throw new Error('Pattern Data is required')
+    if (!from) throw new Error('From is required')
+
+    return new Promise((resolve, reject) => {
+      try {
+        var data = {
+          "originator"    : from,
+          "recipient"     : recipient,
+          "pattern_code"  : patternCode,
+          "values"        : patternData,
+        }
+        
+        request.post({
+          url: this.options.endpoint + '/messages/patterns/send',
+          body: data,
+          headers : {
+            'Authorization' : 'AccessKey ' + this.options.credentials.apiKey,
+            'Content-type'  : 'application/json',
+          },
+          json: true,
+        }, function (error, response, body) {
+          const resBody = response ? response.body : false
+          if (!error && response.statusCode === 200) {
+            resolve(resBody)
+            return resBody
+          } else {
+            const msg = resBody.data ? resBody.data.error : resBody
+            reject(msg)
+            return new Error(msg)
+          }
+        })
+      } catch (error) {
+        reject(error)
+        return new Error(error)
+      }
+    })
+  }
+
+  /**
+   * Parse normal message text to use patternparse normal message text to use pattern
+   * ie: pid=YOUR_PATTERN_CODE\r\nCODE=1234\r\nNAME=ABC...
+   * @param {*} data 
+   * @returns 
+   */
   parsePattern (data) {
     try {
       const message = data['message'] || '';
