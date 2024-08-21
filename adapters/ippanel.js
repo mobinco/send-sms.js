@@ -39,14 +39,13 @@ class IPPanel extends BaseAdapter {
           },
           json: true,
         }, function (error, response, body) {
-          const resBody = response ? response.body : false
-          if (!error && response.statusCode === 200) {
-            resolve(resBody)
-            return resBody
+          body.statusCode = response.statusCode;
+          if (!error && body.statusCode === 200) {
+            resolve(body)
+            return body
           } else {
-            const msg = resBody.data ? resBody.data.error : resBody
-            reject(msg)
-            return new Error(msg)
+            reject(body)
+            return new Error(body)
           }
         })
       } catch (error) {
@@ -80,14 +79,13 @@ class IPPanel extends BaseAdapter {
           },
           json: true,
         }, function (error, response, body) {
-          const resBody = response ? response.body : false
-          if (!error && response.statusCode === 200) {
-            resolve(resBody)
-            return resBody
+          body.statusCode = response.statusCode;
+          if (!error && body.statusCode === 200) {
+            resolve(body)
+            return body
           } else {
-            const msg = resBody.data ? resBody.data.error : resBody
-            reject(msg)
-            return new Error(msg)
+            reject(body)
+            return new Error(body)
           }
         })
       } catch (error) {
