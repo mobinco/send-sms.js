@@ -13,7 +13,7 @@ The library to send simple message which is compatible with multi-services, curr
 ## Installation
 
 ```sh
-$ npm install send-sms --save
+$ npm install git+https://github.com/mobinco/send-sms.js.git --save
 ```
 
 This library also is able to run at browser-side or any JavaScript environment.
