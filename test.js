@@ -2,7 +2,7 @@
 const { SMS, adapters } = require('./index');
 
 const ippanel = new SMS(new adapters.IPPanel({
-  apiKey: 'VI50QJJ-AYGFHQi3yz7wwc9XdtcNY-nxDAZpLPrwn6o=',
+  apiKey: 'Your Api key',
 }));
 
 ippanel.send('Mobile_Number', 'Hello', '3000505').then((res) => {
