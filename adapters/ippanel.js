@@ -1,7 +1,7 @@
 "use strict";
 
-const BaseAdapter = require('send-sms/adapters/base');
-const request = require('request');
+const BaseAdapter = require('./base');
+const axios = require('axios');
 
 class IPPanel extends BaseAdapter {
   constructor(credentials) {
@@ -30,23 +30,22 @@ class IPPanel extends BaseAdapter {
         data = this.parsePattern(data);
         const pattern = (data['pattern_code'] ? '/patterns/send' : '');
 
-        request.post({
-          url: this.options.endpoint + '/messages' + pattern,
-          body: data,
+        axios.post(this.options.endpoint + '/messages' + pattern, data, {
           headers : {
             'Authorization' : 'AccessKey ' + this.options.credentials.apiKey,
             'Content-type'  : 'application/json',
           },
           json: true,
-        }, function (error, response, body) {
-          body.statusCode = response.statusCode;
-          if (!error && body.statusCode === 200) {
-            resolve(body)
-            return body
-          } else {
-            reject(body)
-            return new Error(body)
+        }).then(function (response) {
+          const data = response.data;
+          const status = response.status;
+          if (status === 200) {
+            resolve(data)
+            return data
           }
+        }).catch(function (error) {
+          reject(error)
+          return new Error(error)
         })
       } catch (error) {
         reject(error)
@@ -70,23 +69,22 @@ class IPPanel extends BaseAdapter {
           "values"        : patternData,
         }
         
-        request.post({
-          url: this.options.endpoint + '/messages/patterns/send',
-          body: data,
+        axios.post(this.options.endpoint + '/messages/patterns/send', data, {
           headers : {
             'Authorization' : 'AccessKey ' + this.options.credentials.apiKey,
             'Content-type'  : 'application/json',
           },
           json: true,
-        }, function (error, response, body) {
-          body.statusCode = response.statusCode;
-          if (!error && body.statusCode === 200) {
-            resolve(body)
-            return body
-          } else {
-            reject(body)
-            return new Error(body)
+        }).then(function (response) {
+          const data = response.data;
+          const status = response.status;
+          if (status === 200) {
+            resolve(data)
+            return data
           }
+        }).catch(function (error) {
+          reject(error)
+          return new Error(error)
         })
       } catch (error) {
         reject(error)

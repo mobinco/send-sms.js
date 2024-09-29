@@ -1,7 +1,10 @@
 "use strict";
 
-const BaseAdapter = require('./base');
-const request = require('request');
+const BaseAdapter = require('./base.js');
+const request = require('superagent-promise')(
+  require('superagent'), 
+  Promise
+);
 
 class SMSBao extends BaseAdapter {
   constructor(credentials) {

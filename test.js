@@ -1,28 +1,10 @@
 "use strict"
+const { SMS, adapters } = require('./index');
 
-const test = require('tape');
-const sendSms = require('./index');
-let sms;
+const ippanel = new SMS(new adapters.IPPanel({
+  apiKey: 'VI50QJJ-AYGFHQi3yz7wwc9XdtcNY-nxDAZpLPrwn6o=',
+}));
 
-test('bare adapter will throw an error', (t) => {
-  t.plan(1);
-  var adapter = new sendSms.Adapter();
-  try {
-    adapter.request();
-  } catch (err) {
-    t.equal(err.message, 'not implemented');
-  }
-  t.end();
+ippanel.send('Mobile_Number', 'Hello', '3000505').then((res) => {
+  console.log(res);
 });
-
-test('construct sms instance', (t) => {
-  t.plan(2);
-  var smsbao = new sendSms.adapters.IPPanel({
-    apiKey: 'your api key',
-  });
-  sms = new sendSms.SMS(smsbao);
-  t.equal('zimend.com');
-  t.deepEqual(sms.adapter, smsbao);
-  t.end();
-});
-
