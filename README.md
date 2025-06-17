@@ -8,6 +8,7 @@
 The library to send simple message which is compatible with multi-services, currently it supports the following services:
 
 - ippanel (ippanel.com)
+- parsgreen (parsgreen.com)
 - twilio (www.yuntongxun.com)
 
 ## Installation
@@ -33,6 +34,12 @@ const sms = new SMS(ippanel);
 
 // when you need to send a simple message
 sms.send('your phone number to send', 'foobar text', 'from tel line');
+
+// when you need to get delivery status
+sms.getDelivery('recId');
+
+// when you need to get credit
+sms.getCredit();
 
 // sms.send returns a Promise so if you are in ES7 environment
 try {

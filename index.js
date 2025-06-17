@@ -17,11 +17,20 @@ class SMS {
   async sendPattern(recipient, patternCode, patternData = {}, from = null) {
     return await this.adapter.sendPattern(recipient, patternCode, patternData, from);
   }
+  
+  async getDelivery(recId) {
+    return await this.adapter.getDelivery(recId);
+  }
+
+  async getCredit() {
+    return await this.adapter.getCredit(recId);
+  }
 }
 
 exports.SMS = SMS;
 exports.Adapter = Adapter;
 exports.adapters = {
   IPPanel: require('./adapters/ippanel.js'),
+  ParsGreen: require('./adapters/parsgreen.js'),
   SMSBao: require('./adapters/smsbao.js'),
 };

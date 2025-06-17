@@ -12,6 +12,15 @@ class Adapter {
   async sendPattern() {
     throw new Error('not implemented');
   }
+  
+  async getDelivery() {
+    throw new Error('not implemented');
+  }
+  
+  async getCredit() {
+    throw new Error('not implemented');
+  }
+  
 }
 
 module.exports = Adapter;

@@ -1,10 +1,16 @@
 "use strict"
 const { SMS, adapters } = require('./index');
 
-const ippanel = new SMS(new adapters.IPPanel({
+const parsgreen = new SMS(new adapters.ParsGreen({
   apiKey: 'Your Api key',
 }));
 
-ippanel.send('Mobile_Number', 'Hello', '3000505').then((res) => {
+parsgreen.send('09100000000', 'سلام', '10004004040').then((res) => {
   console.log(res);
+
+  if (res.SuccessCount > 0) {
+    parsgreen.getDelivery(res.DataList[0]?.ReqID).then((res) => {
+      console.log(res);
+    });
+  }
 });
