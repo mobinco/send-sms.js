@@ -40,8 +40,8 @@ class IPPanel extends BaseAdapter {
           const data = response.data;
           const status = response.status;
           if (status === 200) {
-            resolve(data)
-            return data
+            resolve(response)
+            return response
           }
         }).catch(function (error) {
           reject(error)
@@ -79,8 +79,8 @@ class IPPanel extends BaseAdapter {
           const data = response.data;
           const status = response.status;
           if (status === 200) {
-            resolve(data)
-            return data
+            resolve(response)
+            return response
           }
         }).catch(function (error) {
           reject(error)
